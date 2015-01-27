@@ -15,6 +15,7 @@ public class WorldObject : MonoBehaviour {
 	public Texture2D buildImage;
 	public int cost = 100, sellValue = 10, hitPoints = 100, maxHitPoints = 100;
 	public float weaponRange = 10.0f, weaponRechargeTime = 1.0f, weaponAimSpeed = 1.0f, detectionRange = 20.0f;
+	public float contactRatio = 1;
 
 	protected float healthPercentage = 1.0f;
 	protected WorldObject target = null;
@@ -26,7 +27,6 @@ public class WorldObject : MonoBehaviour {
 	private float timeSinceLastDecision = 0.0f, timeBetweenDecisions = 0.1f;
 
 	protected virtual void Awake() {
-		
 	}
 	
 	protected virtual void Start () {

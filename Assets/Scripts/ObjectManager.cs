@@ -28,7 +28,7 @@ public class ObjectManager : MonoBehaviour {
 		Mineral target = null;
 		
 		foreach(var mineral in minerals){
-			if(Vector3.Distance(mineral.transform.position, position) < distance){
+			if(mineral.amount > 0 && Vector3.Distance(mineral.transform.position, position) < distance){
 				target = mineral;
 				distance = Vector3.Distance(mineral.transform.position, position);
 			}
