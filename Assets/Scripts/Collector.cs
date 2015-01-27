@@ -19,12 +19,13 @@ public class Collector : Unit {
 	protected override void Update () {
 		base.Update();
 		if(target != null){
+			print (Vector3.Distance(transform.position, target.transform.position));
 			if(target.tipo == TypeObject.Minerals){
 				if(Vector3.Distance(transform.position, target.transform.position) < 2.53f){
 					Collect ();
 				}
 			}else{
-				if(Vector3.Distance(transform.position, target.transform.position) < 2.53f){
+				if(Vector3.Distance(transform.position, target.transform.position) < 4){
 					Decollect ();
 				}
 			}
