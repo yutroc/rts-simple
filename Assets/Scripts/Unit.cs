@@ -6,6 +6,7 @@ public class Unit : WorldObject {
 	
 	public float speedRotation = 1f;
 	public float speedTranslation = 10f;
+	public float variationTranslation = 50f;
 
 
 	protected override void Awake() {
@@ -40,16 +41,16 @@ public class Unit : WorldObject {
 	protected override void Move ()
 	{
 		if(target == null) return;
-		Vector3 targetDir = target.transform.position - transform.position;
+		NavMeshAgent controller = GetComponent<NavMeshAgent>();
+		controller.SetDestination (target.transform.position);
+		/*Vector3 targetDir = target.transform.position - transform.position;
 		float stepr = speedRotation * Time.deltaTime;
 		Vector3 newDir = Vector3.RotateTowards(transform.forward, targetDir, stepr, 0.0F);
 		Debug.DrawRay(transform.position, newDir, Color.red);
 		transform.rotation = Quaternion.LookRotation(newDir);
 		CharacterController controller = GetComponent<CharacterController>();
 		controller.Move(newDir * Time.deltaTime * speedTranslation);
-		//float stept = speedTranslation * Time.deltaTime;
-		//transform.position = Vector3.MoveTowards(transform.position, transform.position + transform.forward, stept);
-		
+		*/
 		
 	}
 	

@@ -8,6 +8,7 @@ public class Collector : Unit {
 	public float collected = 0;
 	public float capacity = 100;
 	public float speedCollector = 1f;
+	public Mineral mineral;
 
 	protected override void Awake() {
 		base.Awake();
@@ -36,19 +37,20 @@ public class Collector : Unit {
 					target = ObjectManager.go.GetHeadquarterEarly(transform.position);
 				}
 			}else{
+				mineral.currentCollectors--;
 				target = ObjectManager.go.GetHeadquarterEarly(transform.position);
 			}
 		}
 	}
 	
 	private void Collect(){
-		var min = target.GetComponent<Mineral> ();
-		if (min.amount > 0) {
+		mineral = target.GetComponent<Mineral> ();
+		if (mineral.amount > 0) {
 			var amounttocollect = speedCollector * Time.deltaTime;
 			if (amounttocollect + collected <= capacity) {
-				collected += min.Extract (amounttocollect);
+				collected += mineral.Extract (amounttocollect);
 			} else {			
-				collected += min.Extract (capacity - collected);
+				collected += mineral.Extract (capacity - collected);
 			}
 			//print (collected + " - " + capacity + " - " + float.Equals(collected, capacity) + " - " + (collected >= capacity));
 			if (float.Equals(collected, capacity) || collected >= capacity){

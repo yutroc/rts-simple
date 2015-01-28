@@ -28,12 +28,23 @@ public class ObjectManager : MonoBehaviour {
 		Mineral target = null;
 		
 		foreach(var mineral in minerals){
-			if(mineral.amount > 0 && Vector3.Distance(mineral.transform.position, position) < distance){
+			if(mineral.amount > 0 && 
+			   mineral.currentCollectors < mineral.capacityCollectors && 
+			   Vector3.Distance(mineral.transform.position, position) < distance){
 				target = mineral;
 				distance = Vector3.Distance(mineral.transform.position, position);
 			}
 		}
-		
+		if(target == null){
+			foreach(var mineral in minerals){
+				if(mineral.amount > 0 &&  
+				   Vector3.Distance(mineral.transform.position, position) < distance){
+					target = mineral;
+					distance = Vector3.Distance(mineral.transform.position, position);
+				}
+			}	
+		}
+		target.currentCollectors++;
 		return target;
 	}
 	

@@ -4,6 +4,9 @@ using RTS;
 
 public class Mineral : WorldObject {
 	public float amount = 1000;
+	public int currentCollectors = 0;
+	public int capacityCollectors = 1;
+
 	
 	public float Extract(float f){
 		var _amount = amount - f;
