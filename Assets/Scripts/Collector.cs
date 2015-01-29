@@ -34,11 +34,11 @@ public class Collector : Unit {
 			if(collected < capacity){
 				target = ObjectManager.go.GetMineralEarly(transform.position);
 				if(target == null){
-					target = ObjectManager.go.GetHeadquarterEarly(transform.position);
+					target = ObjectManager.go.GetHeadquarterEarly(transform.position, this.player);
 				}
 			}else{
 				mineral.currentCollectors--;
-				target = ObjectManager.go.GetHeadquarterEarly(transform.position);
+				target = ObjectManager.go.GetHeadquarterEarly(transform.position, this.player);
 			}
 		}
 	}

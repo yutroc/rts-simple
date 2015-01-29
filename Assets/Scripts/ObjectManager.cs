@@ -48,12 +48,12 @@ public class ObjectManager : MonoBehaviour {
 		return target;
 	}
 	
-	public Headquarter GetHeadquarterEarly(Vector3 position){
+	public Headquarter GetHeadquarterEarly(Vector3 position, Player player){
 		float distance = float.MaxValue;
 		Headquarter target = null;
 		
 		foreach(var headquarter in headquarters){
-			if(Vector3.Distance(headquarter.transform.position, position) < distance){
+			if(player == headquarter.Player && Vector3.Distance(headquarter.transform.position, position) < distance){
 				target = headquarter;
 				distance = Vector3.Distance(headquarter.transform.position, position);
 			}

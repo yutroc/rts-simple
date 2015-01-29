@@ -7,6 +7,7 @@ public class Unit : WorldObject {
 	public float speedRotation = 1f;
 	public float speedTranslation = 10f;
 	public float variationTranslation = 50f;
+	public NavMeshAgent motor;
 
 
 	protected override void Awake() {
@@ -15,12 +16,13 @@ public class Unit : WorldObject {
 	
 	protected override void Start () {
 		base.Start();
+		motor = GetComponent<NavMeshAgent>();
 	}
 	
 	protected override void Update () {
 		base.Update();
 		if(ShouldMakeDecision()) DecideWhatToDo();
-		if(movingIntoPosition)Move();
+		if (movingIntoPosition) Move ();
 		if(attacking)Attack();
 		if(aiming)Aim();
 		
@@ -41,8 +43,8 @@ public class Unit : WorldObject {
 	protected override void Move ()
 	{
 		if(target == null) return;
-		NavMeshAgent controller = GetComponent<NavMeshAgent>();
-		controller.SetDestination (target.transform.position);
+		motor = GetComponent<NavMeshAgent>();
+		motor.SetDestination (target.transform.position);
 		/*Vector3 targetDir = target.transform.position - transform.position;
 		float stepr = speedRotation * Time.deltaTime;
 		Vector3 newDir = Vector3.RotateTowards(transform.forward, targetDir, stepr, 0.0F);

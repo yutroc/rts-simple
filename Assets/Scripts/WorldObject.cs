@@ -6,6 +6,7 @@ using RTS;
 public class WorldObject : MonoBehaviour {
 
 	protected Player player;
+	public Player Player { get{ return player;}}
 	protected string[] actions = {};
 	protected bool currentlySelected = false;
 	protected Bounds selectionBounds;
