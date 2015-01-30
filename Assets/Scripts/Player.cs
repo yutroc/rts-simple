@@ -8,7 +8,7 @@ public class Player : MonoBehaviour {
 	public string username;
 	public bool human;
 	public HUD hud;
-	public WorldObject SelectedObject { get; set; }
+	public List<WorldObject> SelectedObjects;
 	public int startMoney, startMoneyLimit, startPower, startPowerLimit;
 	public float mineals, mineralsLimit;
 	public Material notAllowedMaterial, allowedMaterial;

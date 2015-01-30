@@ -8,6 +8,7 @@ public class Unit : WorldObject {
 	public float speedTranslation = 10f;
 	public float variationTranslation = 50f;
 	public NavMeshAgent motor;
+	public Vector3? _target = null;
 
 
 	protected override void Awake() {
@@ -34,6 +35,7 @@ public class Unit : WorldObject {
 			if(target != null)	movingIntoPosition = true;
 			break;
 		case AttackMode.Ofensive:
+			if(target != null || _target.HasValue)	movingIntoPosition = true;
 			break;
 		case AttackMode.Defensive:
 			break;
@@ -42,17 +44,16 @@ public class Unit : WorldObject {
 	
 	protected override void Move ()
 	{
-		if(target == null) return;
-		motor = GetComponent<NavMeshAgent>();
-		motor.SetDestination (target.transform.position);
-		/*Vector3 targetDir = target.transform.position - transform.position;
-		float stepr = speedRotation * Time.deltaTime;
-		Vector3 newDir = Vector3.RotateTowards(transform.forward, targetDir, stepr, 0.0F);
-		Debug.DrawRay(transform.position, newDir, Color.red);
-		transform.rotation = Quaternion.LookRotation(newDir);
-		CharacterController controller = GetComponent<CharacterController>();
-		controller.Move(newDir * Time.deltaTime * speedTranslation);
-		*/
+		if(target == null && !_target.HasValue){
+			return;
+		}else{
+			motor = GetComponent<NavMeshAgent>();
+			if(target != null){
+				motor.SetDestination (target.transform.position);
+			}else if(_target.HasValue){
+				motor.SetDestination (_target.Value);				
+			}
+		}
 		
 	}
 	

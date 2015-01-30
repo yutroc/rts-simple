@@ -32,13 +32,13 @@ public class Collector : Unit {
 			}
 		}else{
 			if(collected < capacity){
-				target = ObjectManager.go.GetMineralEarly(transform.position);
+				target = ObjectManager.GetMineralEarly(transform.position);
 				if(target == null){
-					target = ObjectManager.go.GetHeadquarterEarly(transform.position, this.player);
+					target = ObjectManager.GetHeadquarterEarly(transform.position, this.player);
 				}
 			}else{
 				mineral.currentCollectors--;
-				target = ObjectManager.go.GetHeadquarterEarly(transform.position, this.player);
+				target = ObjectManager.GetHeadquarterEarly(transform.position, this.player);
 			}
 		}
 	}
